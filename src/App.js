@@ -1,24 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+/* eslint-disable no-unused-vars */
+import React, { lazy, Suspense, useEffect } from "react";
+import { FullPageSpinner } from "components/loaders/index.js";
+import { useUserDetails } from "lib/queries/auth";
+
+const loadAuthenticatedApp = () => import("app/authenticatedApp");
+const AuthenticatedApp = lazy(loadAuthenticatedApp);
+const UnauthenticatedApp = lazy(() => import("app/unauthenticatedApp"));
 
 function App() {
+  const { user } = useUserDetails();
+  // load authenticated app in bg while user completes auth form
+  useEffect(() => {
+    loadAuthenticatedApp();
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Suspense fallback={<FullPageSpinner />}>
+        {user ? <AuthenticatedApp /> : <UnauthenticatedApp />}
+      </Suspense>
+    </>
   );
 }
 

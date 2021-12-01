@@ -1,0 +1,35 @@
+{
+  "env": {
+    "browser": true,
+    "es6": true
+  },
+  "extends": ["eslint:recommended", "react-app", "prettier"],
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly"
+  },
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "plugins": ["react-hooks"],
+  "rules": {
+    "array-callback-return": 0,
+    "default-case": 1,
+    "indent": ["warn", 2, { "SwitchCase": 1, "ignoredNodes": ["TemplateLiteral"] }],
+    "linebreak-style": ["error", "unix"],
+    "quotes": ["error", "double"],
+    "semi": ["error", "always"],
+    "no-console": 0,
+    "no-func-assign": 1,
+    "no-invalid-regexp": 1,
+    "no-unreachable": 1,
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "import/no-anonymous-default-export": 0,
+    "no-constant-condition": 0
+  }
+}
