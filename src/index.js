@@ -8,7 +8,7 @@ import { Global } from "@emotion/react";
 import { GlobalStyles } from "./styles";
 import reportWebVitals from "./reportWebVitals";
 import { ChakraProvider } from "@chakra-ui/react";
-// import { ReactQueryDevtools } from "react-query-devtools";
+import { ReactQueryDevtools } from "react-query-devtools";
 import { QueryCache, ReactQueryCacheProvider } from "react-query";
 import { AuthProvider } from "contexts/AuthContext";
 
@@ -35,7 +35,7 @@ ReactDOM.render(
         </AuthProvider>
       </ChakraProvider>
 
-      {/* <ReactQueryDevtools /> */}
+      <ReactQueryDevtools />
     </ReactQueryCacheProvider>
   </React.StrictMode>,
   document.getElementById("root")

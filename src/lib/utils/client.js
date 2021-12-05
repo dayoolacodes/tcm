@@ -62,7 +62,8 @@ export async function client(
   if (body) params.data = JSON.stringify(payload);
 
   let response;
-  const axiosResponse = await axios(`${config.BASE_URL}/${endpoint}`, params, signal);
+  // const axiosResponse = await axios(`${config.BASE_URL}/${endpoint}`, params, signal);
+  const axiosResponse = await axios(`https://test-api.squadinc.co/${endpoint}`, params, signal);
   const data = axiosResponse?.data;
 
   if (data?.data) {

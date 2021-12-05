@@ -17,7 +17,7 @@ const CssLoading = () => {
       width: 13px;
       height: 13px;
       border-radius: 50%;
-      background: ${COLORS.primary};
+      background: ${COLORS.white};
       animation-timing-function: cubic-bezier(0, 1, 1, 0);
     }
     .lds-ellipsis div:nth-of-type(1) {

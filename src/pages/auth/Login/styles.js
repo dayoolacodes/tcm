@@ -56,7 +56,9 @@ export const Container = styled.div`
     }
 
     .login-form {
-      margin: 3.2rem auto;
+      margin-top: 3.2rem;
+      margin-left: auto;
+      margin-right: auto;
       max-width: 472px;
       padding: 0 10px;
 
@@ -91,21 +93,31 @@ export const Container = styled.div`
         line-height: 16px;
         padding: 1.2rem 0;
         margin-top: 10.4rem;
-        svg {
-          margin: 0 1.65rem;
-          width: 13px;
-          height: 11.81px;
+        span {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          svg {
+            margin: 0 1.65rem;
+            width: 13px;
+            height: 11.81px;
+          }
+        }
+
+        :disabled {
+          opacity: 0.5;
         }
       }
-      .signup {
-        color: ${COLORS.darkBlue};
-        text-align: center;
-        display: inline-block;
-        width: 100%;
-        margin-top: 8px;
-        a {
-          color: ${COLORS.primary};
-        }
+    }
+    .redirect-signup {
+      color: ${COLORS.darkBlue};
+      text-align: center;
+      display: inline-block;
+      width: 100%;
+      margin-top: 0.8rem;
+      margin-bottom: 3.2rem;
+      a {
+        color: ${COLORS.primary};
       }
     }
   }
@@ -124,15 +136,15 @@ export const Container = styled.div`
       align-items: baseline;
       /* position: relative; */
       width: 100%;
-      img {
+      .ellipse5 {
         position: absolute;
-        left: -230px;
+        left: -200px;
         filter: blur(8px);
         opacity: 0.7;
       }
       .copyright {
         font-weight: 300;
-        font-size: 12px;
+        font-size: 1.2rem;
         line-height: 16px;
         color: #7e8ea9;
         white-space: nowrap;

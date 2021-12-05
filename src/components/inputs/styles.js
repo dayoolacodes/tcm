@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import colors from "styles/colors";
 import { Input, Select, Textarea } from "@chakra-ui/react";
+import COLORS from "styles/colors";
 
 //SEARCH INPUT
 export const SearchInputWrapper = styled.div`
@@ -86,8 +87,54 @@ export const TextInputWrapper = styled.div`
   }
 `;
 
+export const CheckboxWrapper = styled.div`
+  font-size: 12px;
+  line-height: 18px;
+  text-align: left;
+  width: 100%;
+  display: inline-flex;
+  margin: 16px 0;
+  margin-bottom: 0;
+  color: ${COLORS.darkBlue};
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  span {
+    margin-right: 5px;
+  }
+
+  a {
+    color: ${COLORS.primaryOrange};
+    margin: 0 2px;
+  }
+
+  .css-1r69mki,
+  .css-xxkadm {
+    background: #dfebfb;
+    width: 20px;
+    height: 20px;
+    padding: 3px;
+    border-radius: 2px;
+    border: none;
+  }
+  .css-xxkadm[aria-checked="true"],
+  .css-xxkadm[data-checked] {
+    color: ${COLORS.primary};
+    border-radius: 50%;
+  }
+  .css-xxkadm:focus,
+  .css-xxkadm[data-focus] {
+    box-shadow: none;
+  }
+`;
+
 export const TextInputBox = styled(Input)`
-  /* border: 1px solid ${colors.borderblue}; */
+  border: none;
   outline: none;
   width: 100%;
   font-size: 14px;

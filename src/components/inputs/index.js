@@ -10,10 +10,12 @@ import {
   SelectInputBox,
   TextAreaWrapper,
   TextAreaBox,
-  ErrorSpan
+  ErrorSpan,
+  CheckboxWrapper
 } from "./styles";
 import { Spinner } from "components/loaders";
 import { ReactComponent as CIunsortedIcon } from "assets/unsorted-icon.svg";
+import { Checkbox } from "@chakra-ui/react";
 
 export const SearchBar = props => {
   return (
@@ -49,6 +51,23 @@ export const TextInput = props => {
       ) : null}
       {props.loading ? <Spinner className="spinner" color="habari.primaryorange" /> : null}
     </TextInputWrapper>
+  );
+};
+export const CheckboxInput = props => {
+  const [field, meta] = useField(props);
+  return (
+    <>
+      <CheckboxWrapper>
+        <Checkbox type={props.type} {...field} {...props} />
+        <label htmlFor={props.name}>
+          {props.label}
+          {props.required ? <span className="required-text">*</span> : null}
+        </label>
+      </CheckboxWrapper>
+      {props.displayErrMessage === false ? null : meta.touched && meta.error ? (
+        <ErrorSpan>{meta.error}</ErrorSpan>
+      ) : null}
+    </>
   );
 };
 export const PasswordInput = props => {

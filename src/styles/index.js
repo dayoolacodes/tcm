@@ -71,6 +71,13 @@ export const GlobalStyles = css`
   ul {
     list-style-type: none;
   }
+
+  button {
+    transition: all 0.5s;
+    :hover {
+      transform: translateY(-3px);
+    }
+  }
 `;
 
 export default GlobalStyles;

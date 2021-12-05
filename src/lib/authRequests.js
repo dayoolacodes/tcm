@@ -19,12 +19,11 @@ async function getUser() {
 }
 
 async function login(payload) {
-  const response = await client("auth/login", { body: payload });
+  const response = await client("user/v1/gateway/login", { body: payload });
 
   if (response.tokens) {
     // figure out what to do with the refresh token later
     const { access } = response.tokens;
-
     await Cookies.set(config.TOKEN, JSON.stringify(access.token), {
       expires: 1,
       secure: process.env.NODE_ENV !== "development"

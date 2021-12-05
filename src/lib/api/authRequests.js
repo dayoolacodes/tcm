@@ -19,6 +19,7 @@ async function getUser() {
 }
 
 async function login(payload) {
+  // const response = await client("user/v1/gateway/login", { body: payload });
   const response = await client("user/v1/gateway/login", { body: payload });
 
   if (response.tokens) {

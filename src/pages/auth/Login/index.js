@@ -5,11 +5,39 @@ import { ReactComponent as Arrow } from "assets/arrow-right.svg";
 import { ReactComponent as Consulting } from "assets/consultant.svg";
 import { ReactComponent as RemoteWorkMan } from "assets/man-and-system.svg";
 import { Link } from "react-router-dom";
-import { Input } from "components/inputs";
+import { TextInput } from "components/inputs";
 import Ellipse5 from "assets/Ellipse5.png";
 import Ellipse6 from "assets/Ellipse6.png";
+import { Formik } from "formik";
+import { loginValidation } from "utils/utils";
+import { Spinner } from "components/loaders";
+import { useLogin } from "lib/queries/auth";
+import doToast from "components/doToast/doToast";
+// import { login } from "lib/authRequests";
+
+const defaultValues = {
+  email: "",
+  password: ""
+};
 
 const Login = () => {
+  const [mutate, { status }] = useLogin();
+  const isLoading = status === "loading";
+
+  function handleSubmit(payload, e) {
+    mutate(payload, {
+      onSuccess: () => {
+        doToast("Logged in successfully", "success");
+      },
+      onError: error => {
+        // network error has been handled already in client fn
+        if (error !== "Network Error") {
+          doToast(error?.response?.data?.message, "error");
+        }
+      }
+    });
+  }
+
   return (
     <Container>
       <div className="logoWrapper">
@@ -25,22 +53,47 @@ const Login = () => {
           <p className="welcome-header">Welcome Back</p>
           <p className="welcome-desc">Log in to pick up where you left off</p>
         </div>
-        <form className="login-form">
-          <Input label="Username" type="text" placeholder="Enter your username" />
-          <Input label="Password" type="password" placeholder="Enter your password" />
-          <span className="forgot-password">
-            <Link to="/reset-password">Forgot your password?</Link>
-          </span>
-          <button type="submit" className="login-btn">
-            Log In <Arrow />
-          </button>
-          <span className="signup">
-            Don’t have an account? <Link to="/sign-up">Sign up here</Link>
-          </span>
-        </form>
+        <Formik
+          initialValues={defaultValues}
+          validate={loginValidation}
+          onSubmit={(values, props) => handleSubmit(values, props)}
+        >
+          {({ isSubmitting, errors, values, handleSubmit }) => (
+            <>
+              <form className="login-form" onSubmit={handleSubmit}>
+                <TextInput
+                  name="email"
+                  label="Username"
+                  type="text"
+                  placeholder="Enter your username"
+                />
+                <TextInput
+                  name="password"
+                  label="Password"
+                  type="password"
+                  placeholder="Enter your password"
+                />
+                <span className="forgot-password">
+                  <Link to="/reset-password">Forgot your password?</Link>
+                </span>
+                <button type="submit" className="login-btn" disabled={isLoading}>
+                  {isLoading ? (
+                    <Spinner />
+                  ) : (
+                    <span>
+                      Log In <Arrow />
+                    </span>
+                  )}
+                </button>
+              </form>
+              <span className="redirect-signup">
+                Don’t have an account? <Link to="/sign-up">Sign up here</Link>
+              </span>
+            </>
+          )}
+        </Formik>
       </div>
       <div className="footer">
-        {/* <div style={{flexShrink: "0", border:"1px solid red"}}></div> */}
         <div>
           <img src={Ellipse5} alt="ellipse" className="ellipse5" />
           <RemoteWorkMan />
