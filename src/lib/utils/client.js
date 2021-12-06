@@ -1,4 +1,4 @@
-import config from "config";
+// import config from "config";
 import { getToken } from "./auth-utils";
 import axios from "axios";
 import doToast from "components/doToast/doToast";

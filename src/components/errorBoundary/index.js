@@ -2,12 +2,7 @@ import React, { Component } from "react";
 import styled from "@emotion/styled";
 import { device } from "styles";
 import colors from "styles/colors";
-
-const refreshStyle = {
-  color: colors.primary,
-  cursor: "pointer",
-  textDecoration: "underline"
-};
+import COLORS from "styles/colors";
 
 const Container = styled.div`
   display: flex;
@@ -22,13 +17,16 @@ const Container = styled.div`
 `;
 
 const Message = styled.div`
-  border: 2px ${colors.primary} solid;
   border-radius: 5px;
-  font-size: 24px;
+  font-size: 2.4rem;
   color: ${colors.primary};
   text-align: center;
   padding: 20px;
-
+  .refresh {
+    text-decoration: underline;
+    color: ${COLORS.primaryOrange};
+    cursor: pointer;
+  }
   @media ${device.laptop} {
     padding: 40px;
   }
@@ -37,13 +35,9 @@ const Message = styled.div`
 export const ErrorBoundaryFallback = () => (
   <Container>
     <Message>
-      Hey, something went wrong!
-      <span onClick={() => window.location.reload()} style={refreshStyle}>
-        Please refresh!
-      </span>
-      <span role="img" aria-label="face-emoji">
-        {" "}
-        😞
+      Oops! Something went wrong. <br />
+      <span onClick={() => window.location.reload()} className="refresh">
+        Click to refresh!
       </span>
     </Message>
   </Container>

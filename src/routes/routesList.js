@@ -3,7 +3,10 @@ import { Redirect } from "react-router-dom";
 
 const SignUp = lazy(() => import("pages/auth/SignUp"));
 const Login = lazy(() => import("pages/auth/Login"));
-const Home = lazy(() => import("pages/Home"));
+const Appointments = lazy(() => import("pages/Appointments"));
+const PatientInformation = lazy(() => import("pages/PatientInformation"));
+const MedicalRecords = lazy(() => import("pages/MedicalRecords"));
+const Settings = lazy(() => import("pages/Settings"));
 
 const routes = [
   {
@@ -28,19 +31,37 @@ const routes = [
     path: "*",
     exact: true,
     isPrivate: false,
-    component: () => <Redirect to="/" />
+    component: () => <Redirect to="/login" />
   },
   {
-    path: "/",
+    path: "/appointments",
     exact: true,
     isPrivate: true,
-    component: Home
+    component: Appointments
+  },
+  {
+    path: "/medical-records",
+    exact: true,
+    isPrivate: true,
+    component: MedicalRecords
+  },
+  {
+    path: "/patient-information",
+    exact: true,
+    isPrivate: true,
+    component: PatientInformation
+  },
+  {
+    path: "/settings",
+    exact: true,
+    isPrivate: true,
+    component: Settings
   },
   {
     path: "*",
     exact: true,
     isPrivate: true,
-    component: () => <Redirect to="/" />
+    component: () => <Redirect to="/appointments" />
   }
 ];
 
