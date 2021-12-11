@@ -24,7 +24,7 @@ const Login = () => {
   const [mutate, { status }] = useLogin();
   const isLoading = status === "loading";
 
-  function handleSubmit(payload, e) {
+  function handleSubmit(payload) {
     mutate(payload, {
       onSuccess: () => {
         doToast("Logged in successfully", "success");
@@ -56,9 +56,9 @@ const Login = () => {
         <Formik
           initialValues={defaultValues}
           validate={loginValidation}
-          onSubmit={(values, props) => handleSubmit(values, props)}
+          onSubmit={values => handleSubmit(values)}
         >
-          {({ isSubmitting, errors, values, handleSubmit }) => (
+          {({ values, handleSubmit }) => (
             <>
               <form className="login-form" onSubmit={handleSubmit}>
                 <TextInput

@@ -24,12 +24,12 @@ export const SearchInputBox = styled.input`
 
   ::-webkit-input-placeholder {
     /* Edge */
-    color: ${colors.fauxLightBlue};
+    color: ${colors.grey};
   }
 
   :-ms-input-placeholder {
     /* Internet Explorer 10-11 */
-    color: ${colors.fauxLightBlue};
+    color: ${colors.grey};
   }
 
  ::placeholder {
@@ -55,11 +55,53 @@ export const TextInputWrapper = styled.div`
   width: 100%;
   position: relative;
   margin-top: 16px;
-
+  position: relative;
   .spinner {
     position: absolute;
     top: 32%;
     right: 10px;
+  }
+
+  .phone-wrap {
+    display: flex;
+    align-items: center;
+    height: 40px;
+    input {
+      text-indent: 50px;
+    }
+    input[type="date"] {
+      text-indent: 35px;
+      z-index: 1;
+    }
+    input[type="date"]::-webkit-calendar-picker-indicator {
+      position: absolute;
+      left: -15px;
+    }
+    input::-webkit-datetime-edit {
+      position: relative;
+      left: -15px;
+    }
+    input::-webkit-datetime-edit-fields-wrapper {
+      position: relative;
+      left: -15px;
+    }
+    input[type="date"]::-webkit-inner-spin-button,
+    input[type="date"]::-webkit-calendar-picker-indicator {
+      /* display: none;
+             -webkit-appearance: none; */
+      opacity: 0;
+      width: 100%;
+      background: none;
+    }
+    .icon {
+      z-index: 2;
+      margin-top: 8px;
+      position: absolute;
+      /* background: rgba(243, 243, 243, 0.6); */
+      border-right: 1px solid #e0e0e0;
+      padding: 5px 15px;
+      display: flex;
+    }
   }
 
   label {
@@ -185,59 +227,76 @@ export const TextInputBox = styled(Input)`
 
 //SELECT INPUT
 export const SelectInputWrapper = styled.div`
-  width: ${({ width }) => (width ? width + "rem" : "100%")};
+  width: 100%;
+  position: relative;
+  margin-top: 16px;
 
-  .chakra-select__icon-wrapper {
-    margin-right: 0.8rem;
-    /* width: 3rem !important; */
-    /* top: 55% !important; */
-
-    svg {
-      width: 100% !important;
-      height: 100% !important;
-      color: ${colors.primary} !important;
-    }
+  .spinner {
+    position: absolute;
+    top: 32%;
+    right: 10px;
   }
 
   label {
+    /* font-family: Inter; */
     font-style: normal;
-    font-weight: 500;
+    /* font-weight: 500; */
     font-size: 14px;
     line-height: 20px;
-    color: ${colors.primary};
+    color: ${colors.darkBlue};
+    margin-top: 16px;
+  }
+
+  input {
+    text-indent: 4px;
+  }
+
+  .error_p {
+    color: ${colors.red};
+    align-self: flex-start;
+    font-size: 12px;
+    margin-top: 3px;
+  }
+  .required-text {
+    color: red;
   }
 `;
 
 export const SelectInputBox = styled(Select)`
-  border: 1px solid ${({ borderColor }) => colors.borderblue && borderColor};
+  border: none;
   outline: none;
   width: 100%;
-  font-size: 1.4rem;
+  font-size: 14px;
   height: 40px;
   border-radius: 4px;
-  /* margin-top: 1rem; */
-  /* background: ${colors.textinputbackground}; */
-  color: ${colors.primary} !important;
+  margin-top: 0.8rem;
+  background: rgba(243, 243, 243, 0.6);
   text-indent: 1.3rem;
-  transition: border-color 0.2s ease;
+  color: ${colors.darkBlue} !important;
+  transition: border-color 0.5s ease;
+  display: flex;
+
+  option {
+    background: tomato;
+  }
 
   ::-webkit-input-placeholder {
     /* Edge */
-    color: ${colors.borderblue};
+    color: ${colors.grey};
   }
 
   :-ms-input-placeholder {
     /* Internet Explorer 10-11 */
-    color: ${colors.borderblue};
+    color: ${colors.grey};
   }
 
   ::placeholder {
-    color: ${colors.borderblue};
-    padding-left: 2rem;
+    color: ${colors.grey};
+    /* padding-left: 2rem; */
   }
 
   :focus {
-    border: 1px solid ${colors.borderblue};
+    border: 1px solid ${colors.primary};
     outline: 0 !important;
     box-shadow: none !important;
   }
@@ -251,8 +310,9 @@ export const SelectInputBox = styled(Select)`
   :-webkit-autofill,
   :-webkit-autofill:hover,
   :-webkit-autofill:focus {
-    -webkit-text-fill-color: ${colors.primary};
-    box-shadow: 0 0 0px 1000px ${colors.textinputbackground} inset;
+    -webkit-text-fill-color: ${colors.darkBlue};
+    font-size: 14px;
+    box-shadow: transparent;
     transition: background-color 5000s ease-in-out 0s;
   }
 `;
@@ -260,7 +320,7 @@ export const SelectInputBox = styled(Select)`
 //TEXTAREA INPUT
 export const TextAreaWrapper = styled.div`
   width: 100%;
-
+  margin-top: 16px;
   label,
   span {
     font-style: normal;
@@ -285,7 +345,9 @@ export const TextAreaWrapper = styled.div`
 `;
 
 export const TextAreaBox = styled(Textarea)`
-  border: 1px solid ${colors.borderblue};
+  /* border: 1px solid ${colors.borderblue}; */
+  display: flex;
+  border: none;
   outline: none;
   width: 100%;
   font-size: 14px;
@@ -293,7 +355,7 @@ export const TextAreaBox = styled(Textarea)`
   border-radius: 4px;
   color: ${colors.primary} !important;
   margin-top: 0.8rem;
-  background: ${colors.textinputbackground};
+  background: rgba(243, 243, 243, 0.6);
   transition: border-color 0.5s ease;
 
   ::-webkit-input-placeholder {

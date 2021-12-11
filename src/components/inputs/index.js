@@ -49,7 +49,28 @@ export const TextInput = props => {
       {props.displayErrMessage === false ? null : meta.touched && meta.error ? (
         <ErrorSpan>{meta.error}</ErrorSpan>
       ) : null}
-      {props.loading ? <Spinner className="spinner" color="habari.primaryorange" /> : null}
+      {props.loading ? <Spinner className="spinner" /> : null}
+    </TextInputWrapper>
+  );
+};
+export const InputWithIcon = props => {
+  const [field, meta] = useField(props);
+
+  return (
+    <TextInputWrapper>
+      <label htmlFor={props.name}>
+        {props.label}
+        {props.required ? <span className="required-text">*</span> : null}
+      </label>
+      <div className="phone-wrap">
+        <div className="icon">{props.icon}</div>
+        <TextInputBox type={props.type} {...field} {...props} autoComplete="off" />
+      </div>
+
+      {props.displayErrMessage === false ? null : meta.touched && meta.error ? (
+        <ErrorSpan>{meta.error}</ErrorSpan>
+      ) : null}
+      {props.loading ? <Spinner className="spinner" /> : null}
     </TextInputWrapper>
   );
 };
@@ -85,6 +106,15 @@ export const PasswordInput = props => {
 };
 
 export const TextAreaInput = props => {
+  // const [field, meta] = useField(props);
+
+  return (
+    <TextAreaWrapper style={{ marginTop: "0" }}>
+      <TextAreaBox type="text" {...props} autoComplete="off" style={{ marginTop: "0" }} />
+    </TextAreaWrapper>
+  );
+};
+export const TextAreaInput3 = props => {
   const [field, meta] = useField(props);
 
   return (
@@ -101,7 +131,7 @@ export const TextAreaInput = props => {
         ) : null}
       </div>
 
-      <TextAreaBox type="text" {...field} {...props} autoComplete="off" />
+      <TextAreaBox type="text" {...props} {...field} autoComplete="off" />
       {meta.touched && meta.error ? <ErrorSpan>{meta.error}</ErrorSpan> : null}
     </TextAreaWrapper>
   );
@@ -129,7 +159,6 @@ export const SelectInput3 = props => {
     <SelectInputWrapper width={props.width}>
       <label htmlFor={props.field}>{props.label}</label>
       <SelectInputBox
-        {...props}
         placeholder={props.placeholder}
         id={props.id}
         icon={props.icon || <CIunsortedIcon />}
@@ -142,28 +171,3 @@ export const SelectInput3 = props => {
     </SelectInputWrapper>
   );
 };
-
-// export const InputWithAddon = ({ label, type = "text", leftAddon = "", ...props }) => {
-//   const [field, meta] = useField(props);
-
-//   return (
-//     <TextInputWrapper>
-//       <label htmlFor={props.name}>{label}</label>
-//       <InputGroup color="habari.primary" marginTop="0.8rem">
-//         <InputLeftAddon height="4rem" fontSize="1.4rem" children={leftAddon} />
-//         <Input
-//           type={type}
-//           width="100%"
-//           height="4rem"
-//           fontSize="14px"
-//           _focus={{ outline: "none" }}
-//           transition="border-color 0.5s ease"
-//           background="habari.textinputbackground"
-//           {...field}
-//           {...props}
-//         />
-//       </InputGroup>
-//       {meta.touched && meta.error ? <ErrorSpan>{meta.error}</ErrorSpan> : null}
-//     </TextInputWrapper>
-//   );
-// };

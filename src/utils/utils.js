@@ -67,7 +67,7 @@ export const dateRangeFormat = dateRange => {
 
 export const loginValidation = values => {
   let errors = {};
-  let { userName, password, email } = values;
+  let { /* userName, */ password, email } = values;
   // if (!userName) {
   //   errors.userName = "Username is required";
   // }

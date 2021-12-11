@@ -19,7 +19,7 @@ const AmountInput = ({ changefn, currency, setCurrency, ...props }) => {
   return (
     <FormControl>
       {label ? (
-        <FormLabel fontSize="14px" color="habari.primary" htmlFor={name}>
+        <FormLabel fontSize="14px" htmlFor={name}>
           {label}
           {props.required ? (
             <span className="required-text" style={{ color: "red" }}>

@@ -19,34 +19,25 @@ const DatePicker = ({ changeFn, label, disabledDays, ...props }) => {
         </label>
       ) : null}
       <DayPickerInput
-        onDayChange={selectedDay => {
-          setfieldvalue(name, selectedDay);
-          if (props.siblingField) {
-            setfieldvalue(props.siblingField, selectedDay);
-          }
-        }}
+        {...field}
+        // onDayChange={selectedDay => {
+        //   setfieldvalue(name, selectedDay);
+        //   if (props.siblingField) {
+        //     setfieldvalue(props.siblingField, selectedDay);
+        //   }
+        // }}
+        showPreviousYear={true}
         format="DD-MM-YYYY"
         formatDate={formatDate}
         parseDate={parseDate}
-        placeholder="DD-MM-YYYY"
+        placeholder=" "
+        inputProps={{ readOnly: true }}
         dayPickerProps={{
-          disabledDays: { before: disabledDays ?? new Date() },
           onDayClick: (day, { disabled, selected }) => {
             if (disabled) return;
             if (selected) return;
           }
         }}
-        // scroll on modal to reveal the rest of the calendar
-        onDayPickerShow={() => {
-          const modal = document.querySelector(".fieldsContainer");
-          modal.scrollTo({
-            top: 550,
-            left: 0,
-            behavior: "smooth"
-          });
-        }}
-        {...field}
-        {...props}
       />
       {meta.touched && meta.error ? <ErrorSpan>{meta.error}</ErrorSpan> : null}
     </Container>

@@ -10,6 +10,16 @@ const breakpoints = createBreakpoints({
 });
 
 const theme = extendTheme({
+  // components: {
+  //   Select: {
+  //     parts: ["field", "icon"],
+  //     baseStyle: {
+  //       field: {
+  //         color: "red.400",
+  //       }
+  //     }
+  //   }
+  // },
   breakpoints,
   fonts: {
     heading: "'Poppins', cursive, sans-serif",
@@ -28,9 +38,7 @@ const theme = extendTheme({
     "6xl": "4rem"
   },
   colors: {
-    habari: {
-      ...colors
-    }
+    ...colors
   }
 });
 

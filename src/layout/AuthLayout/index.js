@@ -1,7 +1,7 @@
 import React from "react";
 
-const AuthLayout = ({ children }) => {
+function Index({ children }) {
   return <div>{children}</div>;
-};
+}
 
-export default AuthLayout;
+export default Index;

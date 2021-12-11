@@ -15,7 +15,7 @@ const SpinnerContainer = styled.div`
 export function FullPageSpinner(props) {
   return (
     <FullSpinnerContainer>
-      <Loader size="xl" color="habari.red" emptyColor="gray.200" {...props} />
+      <Loader size="xl" emptyColor="gray.200" {...props} />
     </FullSpinnerContainer>
   );
 }
@@ -23,7 +23,7 @@ export function FullPageSpinner(props) {
 export function Spinner(props) {
   return (
     <SpinnerContainer>
-      <Loader size="md" color="habari.red" {...props} />
+      <Loader size="md" {...props} />
     </SpinnerContainer>
   );
 }

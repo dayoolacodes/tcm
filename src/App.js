@@ -2,6 +2,8 @@
 import React, { lazy, Suspense, useEffect } from "react";
 import { FullPageSpinner } from "components/loaders/index.js";
 import { useUserDetails } from "lib/queries/auth";
+import { ToastContainer, Slide } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const loadAuthenticatedApp = () => import("app/authenticatedApp");
 const AuthenticatedApp = lazy(loadAuthenticatedApp);
@@ -18,6 +20,7 @@ function App() {
     <>
       <Suspense fallback={<FullPageSpinner />}>
         {user ? <AuthenticatedApp /> : <UnauthenticatedApp />}
+        <ToastContainer transition={Slide} icon={true} />
       </Suspense>
     </>
   );

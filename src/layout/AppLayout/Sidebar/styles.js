@@ -2,9 +2,17 @@ import styled from "@emotion/styled";
 import COLORS from "styles/colors";
 
 export const Container = styled.div`
-  width: 240px;
-  min-height: 100vh;
+  min-width: 24rem;
+  height: 100vh;
+  overflow-y: auto;
+  /* bottom: 0; */
+
   background: #f3f3f6;
+  /* position: fixed; */
+
+  @media all and (max-width: 1024px) {
+    display: none;
+  }
   .logoWrapper {
     margin: 17px 30px;
   }

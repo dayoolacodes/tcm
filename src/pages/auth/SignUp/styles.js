@@ -155,7 +155,7 @@ export const Container = styled.div`
         font-weight: 300;
         font-size: 1.2rem;
         line-height: 16px;
-        color: #7e8ea9;
+        color: ${COLORS.grey};
         white-space: nowrap;
         text-align: center;
       }
