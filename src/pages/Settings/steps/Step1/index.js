@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 import React, { useContext } from "react";
 import { Container } from "./styles";
 import { ReactComponent as NoProfilePic } from "assets/no-profile-pic.svg";
