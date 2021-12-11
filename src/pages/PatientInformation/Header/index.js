@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 import useWindowSize from "customHooks/useWindowSize";
 import React from "react";
 import { PatientInformationContext } from "..";
