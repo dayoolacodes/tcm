@@ -6,7 +6,13 @@ import { Container } from "../styles";
 import { ReactComponent as DropDIcon } from "assets/select-dropdown-icon.svg";
 import { ReactComponent as PhoneIcon } from "assets/phone-icon.svg";
 
-const defaultValues = {};
+const defaultValues = {
+  firstName: "",
+  lastName: "",
+  relationshipToPatient: "",
+  phoneNumber: "",
+  mobileNumber: ""
+};
 
 function Index() {
   return (

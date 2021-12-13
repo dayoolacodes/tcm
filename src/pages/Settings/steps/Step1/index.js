@@ -13,7 +13,10 @@ import { Spinner } from "components/loaders";
 import { SettingsContext } from "pages/Settings";
 import doToast from "components/doToast/doToast";
 
-const defaultValues = {};
+const defaultValues = {
+  username: "",
+  displayName: ""
+};
 
 function Index() {
   const { dispatch } = useContext(SettingsContext);

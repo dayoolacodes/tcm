@@ -6,24 +6,20 @@ import { Container } from "../styles";
 import { ReactComponent as DropDIcon } from "assets/select-dropdown-icon.svg";
 import { ReactComponent as PhoneIcon } from "assets/phone-icon.svg";
 
-const defaultValues = {};
+const defaultValues = {
+  firstName: "",
+  lastName: "",
+  city: "",
+  address: "",
+  province: "",
+  postalCode: "",
+  phoneNumber: "",
+  email: "",
+  fax: "",
+  additionalNotes: ""
+};
 
 function Index() {
-  const citiesOption = [
-    {
-      value: "britishColumbia",
-      label: "British Columbia"
-    },
-    {
-      value: "ontario",
-      label: "Ontario"
-    },
-    {
-      value: "novaScotia",
-      label: "Nova Scotia"
-    }
-  ];
-
   return (
     <Container>
       <div className="wrapper">
@@ -61,14 +57,7 @@ function Index() {
                   placeholder="Enter your address"
                 />
                 <div className="row">
-                  <SelectInput3
-                    name="province"
-                    label="Province"
-                    type="text"
-                    placeholder="Select..."
-                    options={citiesOption}
-                    setFieldValue={setFieldValue}
-                  />
+                  <TextInput name="city" label="City" placeholder="" />
                   <div className="spacer" />
                   <SelectInput3
                     name="province"
