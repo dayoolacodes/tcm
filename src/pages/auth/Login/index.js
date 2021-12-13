@@ -25,7 +25,11 @@ const Login = () => {
   const isLoading = status === "loading";
 
   function handleSubmit(payload) {
-    mutate(payload, {
+    const data = {
+      email: payload?.email?.trim(),
+      password: payload?.password?.trim()
+    };
+    mutate(data, {
       onSuccess: () => {
         doToast("Logged in successfully", "success");
       },

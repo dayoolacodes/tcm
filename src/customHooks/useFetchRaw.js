@@ -5,7 +5,7 @@
  * @param {JSON} postBody post body
  * @returns data
  */
-const TOKEN = "fdvkhfvjdslfjndsjb .jkdsn.fkjn.jbk n.fsjkbn .jfdsn.jdsbglshdfv";
+const TOKEN = "";
 
 const UseFetchRaw = async (url, method = "GET", postBody = "") => {
   let extra = method === "GET" ? "" : { body: JSON.stringify(postBody) };
