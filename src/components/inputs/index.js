@@ -194,7 +194,11 @@ export const SelectInput3 = props => {
       ...provided,
       color: COLORS.darkBlue
     }),
-    menuPortal: base => ({ ...base, zIndex: 9999 })
+    menuPortal: base => ({ ...base, zIndex: 9999 }),
+    placeholder: base => ({
+      ...base,
+      color: COLORS.grey
+    })
   };
 
   return (
