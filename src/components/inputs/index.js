@@ -197,7 +197,8 @@ export const SelectInput3 = props => {
     menuPortal: base => ({ ...base, zIndex: 9999 }),
     placeholder: base => ({
       ...base,
-      color: COLORS.grey
+      color: COLORS.grey,
+      whiteSpace: "nowrap"
     })
   };
 
