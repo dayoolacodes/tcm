@@ -26,17 +26,17 @@ const PasswordSetting = ({ title, subtitle, inputArray }) => {
           // validate={patientValidation}
           onSubmit={handleSubmit}
         >
-          {({ isSubmitting, values }) => (
+          {({ isSubmitting, values, setFieldValue }) => (
             <Form>
               {inputArray?.map((e, i) => {
                 return e?.inputtype === "select" ? (
-                  <SelectInput3 {...e} key={e + i} icon={<DropDIcon />}>
-                    {e?.children.map((e, i) => (
-                      <option value={e} key={e + i}>
-                        {e}
-                      </option>
-                    ))}
-                  </SelectInput3>
+                  <SelectInput3
+                    {...e}
+                    key={e + i}
+                    icon={<DropDIcon />}
+                    setFieldValue={setFieldValue}
+                    options={e.options}
+                  />
                 ) : (
                   <TextInput {...e} key={e + i} />
                 );
@@ -62,12 +62,27 @@ function Index() {
           name: "securityQuestion",
           placeholder: "Select a security question",
           inputtype: "select",
-          children: [
-            "What is your mother’s maiden name?",
-            "What was your first address?",
-            "What was the name of your first pet?",
-            "What was the name of your first pet?",
-            "What is your mother’s maiden name?"
+          options: [
+            {
+              label: "What is your mother’s maiden name?",
+              value: "mother's_maiden_name_"
+            },
+            {
+              label: "What was your first address?",
+              value: "first_address"
+            },
+            {
+              label: "What was the name of your first pet?",
+              value: "first_pet_"
+            },
+            {
+              label: "What was the name of your first pet?",
+              value: "first_pet"
+            },
+            {
+              label: "What is your mother’s maiden name?",
+              value: "mother's_maiden_name"
+            }
           ]
         },
         {

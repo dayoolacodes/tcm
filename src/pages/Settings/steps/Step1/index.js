@@ -66,7 +66,7 @@ function Index() {
       header: "Security Question",
       desc: "Set up a security question to further secure your account",
       btnText: "Set up Security Question",
-      isActive: false,
+      isActive: true,
       clickAction: () => dispatch({ type: "SECURITYQUESTIONS" })
     }
   ];

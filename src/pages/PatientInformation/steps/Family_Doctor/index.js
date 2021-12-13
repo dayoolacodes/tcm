@@ -9,6 +9,21 @@ import { ReactComponent as PhoneIcon } from "assets/phone-icon.svg";
 const defaultValues = {};
 
 function Index() {
+  const citiesOption = [
+    {
+      value: "britishColumbia",
+      label: "British Columbia"
+    },
+    {
+      value: "ontario",
+      label: "Ontario"
+    },
+    {
+      value: "novaScotia",
+      label: "Nova Scotia"
+    }
+  ];
+
   return (
     <Container>
       <div className="wrapper">
@@ -21,7 +36,7 @@ function Index() {
           // validate={patientValidation}
           // onSubmit={values => handleSubmit(values)}
         >
-          {({ isSubmitting, values, handleSubmit }) => (
+          {({ isSubmitting, values, handleSubmit, setFieldValue }) => (
             <>
               <form className="patient-info-form" onSubmit={handleSubmit}>
                 <div className="row">
@@ -47,16 +62,13 @@ function Index() {
                 />
                 <div className="row">
                   <SelectInput3
-                    name="city"
-                    label="City"
+                    name="province"
+                    label="Province"
                     type="text"
-                    placeholder=" "
-                    icon={<DropDIcon />}
-                  >
-                    <option value="britishColumbia">British Columbia</option>
-                    <option value="ontario">Ontario</option>
-                    <option value="novaScotia">Nova Scotia</option>
-                  </SelectInput3>
+                    placeholder="Select..."
+                    options={citiesOption}
+                    setFieldValue={setFieldValue}
+                  />
                   <div className="spacer" />
                   <SelectInput3
                     name="province"
@@ -64,6 +76,7 @@ function Index() {
                     type="text"
                     placeholder="Select..."
                     icon={<DropDIcon />}
+                    options={[]}
                   />
                 </div>
                 <div className="row">

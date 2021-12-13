@@ -3,17 +3,75 @@ import { Spinner } from "components/loaders";
 import { Formik } from "formik";
 import React from "react";
 import { Container } from "../styles";
-import { ReactComponent as DropDIcon } from "assets/select-dropdown-icon.svg";
 import { ReactComponent as CalendarIcon } from "assets/calendarInput.svg";
 import { ReactComponent as PhoneIcon } from "assets/phone-icon.svg";
 import FamilyInfo from "../Family_Info";
 import EmergencyContact from "../Emergency_Contact";
 import useWindowSize from "customHooks/useWindowSize";
 
-const defaultValues = {};
+const defaultValues = {
+  firstName: "",
+  lastName: "",
+  middleName: "",
+  city: "",
+  address: "",
+  province: "",
+  postalCode: "",
+  phoneNumber: "",
+  mobileNumber: "",
+  email: "",
+  dateOfBirth: "",
+  sex: "",
+  occupation: "",
+  maritalStatus: "",
+  workSafeBCCaseNo: "",
+  careCardNumber: "",
+  residencyStatus: ""
+};
 
 function Index() {
   const { width } = useWindowSize();
+
+  const citiesOption = [
+    {
+      value: "britishColumbia",
+      label: "British Columbia"
+    },
+    {
+      value: "ontario",
+      label: "Ontario"
+    },
+    {
+      value: "novaScotia",
+      label: "Nova Scotia"
+    }
+  ];
+
+  const sexOptions = [
+    {
+      value: "male",
+      label: "Male"
+    },
+    {
+      value: "female",
+      label: "Female"
+    }
+  ];
+  const maritalStatusOptions = [
+    {
+      value: "married",
+      label: "Married"
+    },
+    {
+      value: "single",
+      label: "Single"
+    },
+    {
+      value: "divorced",
+      label: "Divorced"
+    }
+  ];
+
   return (
     <Container>
       <div className="wrapper">
@@ -26,7 +84,7 @@ function Index() {
           // validate={patientValidation}
           // onSubmit={values => handleSubmit(values)}
         >
-          {({ isSubmitting, values, handleSubmit }) => (
+          {({ isSubmitting, values, handleSubmit, setFieldValue }) => (
             <>
               <form className="patient-info-form" onSubmit={handleSubmit}>
                 <div className="row">
@@ -57,12 +115,9 @@ function Index() {
                     label="City"
                     type="text"
                     placeholder="Where do you live?"
-                    icon={<DropDIcon />}
-                  >
-                    <option value="britishColumbia">British Columbia</option>
-                    <option value="ontario">Ontario</option>
-                    <option value="novaScotia">Nova Scotia</option>
-                  </SelectInput3>
+                    options={[]}
+                    setFieldValue={setFieldValue}
+                  />
                 </div>
                 <TextInput
                   name="address"
@@ -76,7 +131,8 @@ function Index() {
                     label="Province"
                     type="text"
                     placeholder="Select..."
-                    icon={<DropDIcon />}
+                    options={citiesOption}
+                    setFieldValue={setFieldValue}
                   />
                   <div className="spacer" />
                   <TextInput
@@ -119,10 +175,13 @@ function Index() {
                     icon={<CalendarIcon />}
                   />
                   <div className="spacer" />
-                  <SelectInput3 name="sex" label="Sex" placeholder="Select" icon={<DropDIcon />}>
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
-                  </SelectInput3>
+                  <SelectInput3
+                    name="sex"
+                    label="Sex"
+                    placeholder="Select"
+                    options={sexOptions}
+                    setFieldValue={setFieldValue}
+                  />
                 </div>
                 <div className="row">
                   <TextInput
@@ -136,19 +195,17 @@ function Index() {
                     name="maritalStatus"
                     label="Marital Status"
                     placeholder="Select"
-                    icon={<DropDIcon />}
-                  >
-                    <option value="single">Single</option>
-                    <option value="married">Married</option>
-                    <option value="divorced">Divorced</option>
-                  </SelectInput3>
+                    options={maritalStatusOptions}
+                    setFieldValue={setFieldValue}
+                  />
                 </div>
                 <div className="row">
                   <SelectInput3
                     name="residencyStatus"
                     label="Residency Status"
                     placeholder="Select"
-                    icon={<DropDIcon />}
+                    options={[]}
+                    setFieldValue={setFieldValue}
                   ></SelectInput3>
                   <div className="spacer" />
                   <TextInput

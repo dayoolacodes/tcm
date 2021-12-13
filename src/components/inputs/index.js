@@ -15,7 +15,10 @@ import {
 } from "./styles";
 import { Spinner } from "components/loaders";
 import { ReactComponent as CIunsortedIcon } from "assets/unsorted-icon.svg";
+import { ReactComponent as DropDIcon } from "assets/select-dropdown-icon.svg";
 import { Checkbox } from "@chakra-ui/react";
+import { components } from "react-select";
+import COLORS from "styles/colors";
 
 export const SearchBar = props => {
   return (
@@ -154,19 +157,59 @@ export const SelectInput = props => {
 };
 
 export const SelectInput3 = props => {
-  const [field, meta] = useField(props);
+  const [meta] = useField(props);
+
+  const Placeholder = props => {
+    return <components.Placeholder {...props} />;
+  };
+
+  const CaretDownIcon = () => {
+    return <DropDIcon />;
+  };
+
+  const DropdownIndicator = props => {
+    return (
+      <components.DropdownIndicator {...props}>
+        <CaretDownIcon />
+      </components.DropdownIndicator>
+    );
+  };
+
+  const style = {
+    control: (provided, state) => ({
+      ...provided,
+      "*": {
+        boxShadow: "none !important"
+      },
+      width: "100%",
+      background: "rgba(243, 243, 243, 0.6)",
+      boxShadow: "none",
+      borderColor: state.isFocused ? COLORS.primary : "rgba(243, 243, 243, 0.6)",
+
+      "&:hover": {
+        borderColor: state.isFocused ? COLORS.primary : "rgba(243, 243, 243, 0.6)"
+      }
+    }),
+    singleValue: provided => ({
+      ...provided,
+      color: COLORS.darkBlue
+    }),
+    menuPortal: base => ({ ...base, zIndex: 9999 })
+  };
+
   return (
     <SelectInputWrapper width={props.width}>
       <label htmlFor={props.field}>{props.label}</label>
       <SelectInputBox
         placeholder={props.placeholder}
+        components={{ Placeholder, DropdownIndicator, IndicatorSeparator: () => null }}
         id={props.id}
-        icon={props.icon || <CIunsortedIcon />}
-        {...field}
-        {...props}
-      >
-        {props.children}
-      </SelectInputBox>
+        options={props.options}
+        styles={style}
+        isSearchable={false}
+        onChange={option => props?.setFieldValue(props?.name, option?.value)}
+        menuPortalTarget={document.body}
+      />
       {meta.touched && meta.error ? <ErrorSpan>{meta.error}</ErrorSpan> : null}
     </SelectInputWrapper>
   );

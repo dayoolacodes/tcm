@@ -4,7 +4,7 @@ import COLORS from "styles/colors";
 export const Container = styled.div`
   .wrapper {
     margin: 7rem auto;
-    max-width: 474px;
+    max-width: 874px;
     padding: 0 2rem;
     overflow-y: auto;
     .header {

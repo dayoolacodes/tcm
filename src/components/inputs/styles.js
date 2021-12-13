@@ -1,7 +1,8 @@
 import styled from "@emotion/styled";
 import colors from "styles/colors";
-import { Input, Select, Textarea } from "@chakra-ui/react";
+import { Input, Textarea } from "@chakra-ui/react";
 import COLORS from "styles/colors";
+import Select from "react-select";
 
 //SEARCH INPUT
 export const SearchInputWrapper = styled.div`
