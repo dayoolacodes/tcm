@@ -124,3 +124,43 @@ export const LogOutIcon = ({ active }) => {
     </svg>
   );
 };
+export const MobileNavCalendar = ({ active }) => {
+  const stroke = active ? "#fff" : "#2D4875";
+  return (
+    <svg width="15" height="16" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path
+        opacity="0.2"
+        d="M2.34375 5.65625H12.6562V3.3125C12.6562 3.18818 12.6069 3.06895 12.519 2.98104C12.431 2.89314 12.3118 2.84375 12.1875 2.84375H2.8125C2.68818 2.84375 2.56895 2.89314 2.48104 2.98104C2.39314 3.06895 2.34375 3.18818 2.34375 3.3125V5.65625Z"
+        fill={stroke}
+      />
+      <path
+        d="M12.1875 2.84375H2.8125C2.55362 2.84375 2.34375 3.05362 2.34375 3.3125V12.6875C2.34375 12.9464 2.55362 13.1562 2.8125 13.1562H12.1875C12.4464 13.1562 12.6562 12.9464 12.6562 12.6875V3.3125C12.6562 3.05362 12.4464 2.84375 12.1875 2.84375Z"
+        stroke={stroke}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M10.3125 1.90625V3.78125"
+        stroke={stroke}
+        strokeLinecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M4.6875 1.90625V3.78125"
+        stroke={stroke}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M2.34375 5.65625H12.6562"
+        stroke={stroke}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <rect x="5.21729" y="7.67392" width="1.30435" height="1.30435" rx="0.2" fill={stroke} />
+      <rect x="5.21729" y="9.63043" width="1.30435" height="1.30435" rx="0.2" fill={stroke} />
+      <rect x="8.47827" y="9.63043" width="1.30435" height="1.30435" rx="0.2" fill={stroke} />
+      <rect x="8.47827" y="7.67392" width="1.30435" height="1.30435" rx="0.2" fill={stroke} />
+    </svg>
+  );
+};

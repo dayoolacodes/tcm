@@ -45,10 +45,10 @@ const Index = () => {
         <div className="right">
           <p>Book Appointment by:</p>
           <div className="btn-wrap">
-            <button>
+            <button onClick={() => dispatch({ type: "CALENDAR" })}>
               Calendar <CalendarIcon />
             </button>
-            <button>
+            <button onClick={() => dispatch({ type: "MAP" })}>
               Map <MapMarker />
             </button>
           </div>

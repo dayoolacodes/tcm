@@ -1,30 +1,12 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import { TableFooterDiv } from "./TableFooter";
-import {
-  Container,
-  // ActionHeader,
-  TableWrapper,
-  // FilterWrapper,
-  // VerticalDivider,
-  // Text,
-  // ActionButton,
-  // InputWapper,
-  // Input,
-  StatusDot,
-  QuickAction,
-  MobileWrapper
-} from "./styles";
-// import { FiFilter } from "react-icons/fi";
-import { AiOutlineLink, AiOutlinePlus } from "react-icons/ai";
-// import { BiSearchAlt2 } from "react-icons/bi";
+import { Container, TableWrapper, StatusDot, QuickAction } from "./styles";
+import { AiOutlineLink } from "react-icons/ai";
 import { RiArrowUpDownFill } from "react-icons/ri";
-import TableData from "dummy/TableData";
 import { DataTableHelpers } from "utils/DataTableHelpers";
 import CustomCheckBox from "components/CustomCheckBox";
 import { ReactComponent as DownloadIcon } from "assets/download-icon.svg";
-
-const dummyTableData = TableData; //API Data that's immutable
 
 export default function DataTable(props) {
   const {
@@ -43,19 +25,6 @@ export default function DataTable(props) {
 
   const [showMobileView, setShowMobileView] = useState(false);
   const [currentData, setCurrentData] = useState(tableData);
-
-  const onSearchKeyup = event => {
-    onPageIndexChange(0); //reset page index to 0
-    // input text
-    let searchText = event.target.value.trim().toLowerCase();
-    //Sort Data based on the imput
-    let newObjArr = DataTableHelpers.searchInput(dummyTableData, searchText);
-    setCurrentData(newObjArr);
-  };
-
-  useEffect(() => {
-    setCurrentData(tableData);
-  }, [tableData]);
 
   /**
    *

@@ -63,7 +63,7 @@ export const TextInputWrapper = styled.div`
     right: 10px;
   }
 
-  .phone-wrap {
+  .icon-wrap {
     display: flex;
     align-items: center;
     height: 40px;
@@ -351,7 +351,7 @@ export const TextAreaBox = styled(Textarea)`
   border: none;
   outline: none;
   width: 100%;
-  font-size: 14px;
+  font-size: 1.4rem;
   /* height: 5rem; */
   border-radius: 4px;
   color: ${colors.primary} !important;

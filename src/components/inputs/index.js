@@ -16,6 +16,7 @@ import {
 import { Spinner } from "components/loaders";
 import { ReactComponent as CIunsortedIcon } from "assets/unsorted-icon.svg";
 import { ReactComponent as DropDIcon } from "assets/select-dropdown-icon.svg";
+import { ReactComponent as DropDIconDark } from "assets/select-dropdown-icon-dark.svg";
 import { Checkbox } from "@chakra-ui/react";
 import { components } from "react-select";
 import COLORS from "styles/colors";
@@ -65,7 +66,28 @@ export const InputWithIcon = props => {
         {props.label}
         {props.required ? <span className="required-text">*</span> : null}
       </label>
-      <div className="phone-wrap">
+      <div className="icon-wrap">
+        <div className="icon">{props.icon}</div>
+        <TextInputBox type={props.type} {...field} {...props} autoComplete="off" />
+      </div>
+
+      {props.displayErrMessage === false ? null : meta.touched && meta.error ? (
+        <ErrorSpan>{meta.error}</ErrorSpan>
+      ) : null}
+      {props.loading ? <Spinner className="spinner" /> : null}
+    </TextInputWrapper>
+  );
+};
+export const DateInput = props => {
+  const [field, meta] = useField(props);
+
+  return (
+    <TextInputWrapper style={{ ...props.style }}>
+      <label htmlFor={props.name} style={{ color: "#F7981D", fontSize: "1.4rem" }}>
+        {props.label}
+        {props.required ? <span className="required-text">*</span> : null}
+      </label>
+      <div className="icon-wrap" style={{ marginTop: "15px" }}>
         <div className="icon">{props.icon}</div>
         <TextInputBox type={props.type} {...field} {...props} autoComplete="off" />
       </div>
@@ -163,14 +185,14 @@ export const SelectInput3 = props => {
     return <components.Placeholder {...props} />;
   };
 
-  const CaretDownIcon = () => {
-    return <DropDIcon />;
-  };
+  // const CaretDownIcon = () => {
+  //   return <DropDIcon />;
+  // };
 
   const DropdownIndicator = props => {
     return (
       <components.DropdownIndicator {...props}>
-        <CaretDownIcon />
+        <DropDIcon />
       </components.DropdownIndicator>
     );
   };
@@ -216,6 +238,69 @@ export const SelectInput3 = props => {
         menuPortalTarget={document.body}
       />
       {meta.touched && meta.error ? <ErrorSpan>{meta.error}</ErrorSpan> : null}
+    </SelectInputWrapper>
+  );
+};
+
+export const SelectInputNoFomik = props => {
+  // const [meta] = useField(props);
+
+  const Placeholder = props => {
+    return <components.Placeholder {...props} />;
+  };
+
+  const DropdownIndicator = props => {
+    return (
+      <components.DropdownIndicator {...props}>
+        <DropDIconDark />
+      </components.DropdownIndicator>
+    );
+  };
+
+  const style = {
+    control: (provided, state) => ({
+      ...provided,
+      "*": {
+        boxShadow: "none !important"
+      },
+      width: "100%",
+      background: "rgba(243, 243, 243, 0.6)",
+      boxShadow: "none",
+      borderColor: state.isFocused ? COLORS.primary : "rgba(243, 243, 243, 0.6)",
+
+      "&:hover": {
+        borderColor: state.isFocused ? COLORS.primary : "rgba(243, 243, 243, 0.6)"
+      }
+    }),
+    singleValue: provided => ({
+      ...provided,
+      color: COLORS.darkBlue
+    }),
+    menuPortal: base => ({ ...base, zIndex: 9999 }),
+    placeholder: base => ({
+      ...base,
+      color: COLORS.grey,
+      whiteSpace: "nowrap"
+    })
+  };
+
+  return (
+    <SelectInputWrapper width={props.width}>
+      <label htmlFor={props.field}>{props.label}</label>
+      <SelectInputBox
+        {...props}
+        // defaultValue={props.defaultValue}
+        placeholder={props.placeholder}
+        components={{ Placeholder, DropdownIndicator, IndicatorSeparator: () => null }}
+        id={props.id}
+        options={props.options}
+        styles={style}
+        isSearchable={false}
+        onChange={props.onChange}
+        // onChange={option => props?.setFieldValue(props?.name, option?.value)}
+        menuPortalTarget={document.body}
+      />
+      {/* {meta.touched && meta.error ? <ErrorSpan>{meta.error}</ErrorSpan> : null} */}
     </SelectInputWrapper>
   );
 };

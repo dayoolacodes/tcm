@@ -1,7 +1,9 @@
 import React from "react";
 import Step1 from "./steps/step1";
 import AppointementDetails from "./steps/AppointementDetails";
+import CalendarView from "./steps/CalendarView";
 import Subheader from "./Subheader";
+import MapView from "./steps/MapView";
 
 export const AppointmentContext = React.createContext();
 AppointmentContext.displayName = "AppointmentContext";
@@ -25,6 +27,10 @@ const Index = () => {
       case "cancelled":
       case "completed":
         return <AppointementDetails Details={values?.appointementDetails} />;
+      case "calendar":
+        return <CalendarView />;
+      case "map":
+        return <MapView />;
     }
   }
 
@@ -48,6 +54,10 @@ function AppointmentReducer(state, action) {
       return { view: "cancelled" };
     case "COMPLETED":
       return { view: "completed" };
+    case "CALENDAR":
+      return { view: "calendar" };
+    case "MAP":
+      return { view: "map" };
 
     default:
       return state;

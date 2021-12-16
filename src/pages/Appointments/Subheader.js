@@ -5,12 +5,41 @@ import { AppointmentContext } from ".";
 
 function Subheader() {
   const { state, dispatch } = useContext(AppointmentContext);
+
+  const breadCrumb = () => {
+    switch (state?.view) {
+      case "booked":
+      case "completed":
+      case "cancelled":
+        return "> Details";
+      case "step1":
+        return;
+      default:
+        return `> ${state?.view.charAt(0).toUpperCase()}${state?.view.substring(1)}`;
+    }
+  };
+
+  const btnText = () => {
+    switch (state?.view) {
+      case "booked":
+      case "completed":
+      case "cancelled":
+        return "Back";
+      case "step1":
+        return;
+      default:
+        return "Cancel";
+    }
+  };
+
   return (
     <Container>
       <p className="desc">
-        Appointments <span> {state?.view !== "step1" && "> Details"}</span>{" "}
+        Appointments <span>{breadCrumb()}</span>{" "}
       </p>
-      {state?.view !== "step1" && <button onClick={() => dispatch({ type: "STEP1" })}>Back</button>}
+      {state?.view !== "step1" && (
+        <button onClick={() => dispatch({ type: "STEP1" })}>{btnText()}</button>
+      )}
     </Container>
   );
 }

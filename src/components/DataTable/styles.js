@@ -1,8 +1,6 @@
 /* eslint-disable indent */
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-// import { colors } from "pages/auth/Forms/theme";
-import { device } from "styles";
 import COLORS from "styles/colors";
 import { fontSize, respSize } from "utils/Dimension";
 
@@ -88,124 +86,6 @@ export const DateWrapper = styled.div`
     }
   }
 `;
-export const FilterWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  color: ${COLORS.darkBlue};
-  white-space: nowrap;
-  span {
-    font-size: ${fontSize(14)};
-    line-height: ${respSize(24)};
-  }
-`;
-export const VerticalDivider = styled.div`
-  height: 25px;
-  width: 1px;
-  display: inline-block;
-  background-color: #c8cfd9;
-`;
-//Header Texts
-export const Text = styled.span`
-  display: inline-block;
-  margin-left: ${respSize(11)};
-  font-size: ${fontSize(14)};
-  line-height: ${respSize(24)};
-  font-weight: ${respSize(600)};
-  color: ${COLORS.darkBlue};
-  .allTransactionText {
-    @media all and (max-width: 767px) {
-      display: none;
-    }
-  }
-  .filterPop {
-    border: none;
-    border-radius: 32px;
-    padding: 4px 12px;
-    margin: 0 1px;
-    background-color: ${COLORS.aliceBlue};
-    display: flex;
-    > svg {
-      margin: 0.5rem;
-      width: 1.5rem;
-      cursor: pointer;
-      @media all and (max-width: 768px) {
-        margin: 0.15rem 0.5rem;
-      }
-    }
-  }
-`;
-// input field on the header
-export const InputWapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  background-color: ${COLORS.white};
-  padding-left: ${fontSize(18)};
-  padding-right: ${fontSize(18)};
-  border-radius: 2px;
-  border: ${({ onChangeFocus }) =>
-    onChangeFocus === true ? "1px solid rgba(45,72,117,0.3)" : "1px solid #EBEBF2"};
-  .icon {
-    display: inline-block;
-    color: #d5d5d5;
-    width: ${respSize(20)};
-    height: ${respSize(20)};
-  }
-`;
-export const Input = styled.input`
-  display: inline-block;
-  min-width: ${respSize(300)};
-  background-color: ${COLORS.white};
-  color: ${COLORS.darkBlue};
-  font-size: ${fontSize(14)};
-  padding: ${fontSize(8)} ${fontSize(14)};
-  line-height: ${respSize(24)};
-  flex: 1;
-  border: none;
-  &::placeholder {
-    color: #d5d5d5;
-    opacity: 1;
-  }
-  &:focus {
-    border: none;
-    outline: none;
-  }
-`;
-//Action button at the top right
-export const ActionButton = styled.button`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  background-color: ${COLORS.green};
-  padding: ${respSize(10)} ${respSize(20)};
-  border-radius: ${respSize(4)};
-  color: ${COLORS.white};
-  white-space: nowrap;
-  width: 200px;
-
-  @media only screen and (max-width: 992px) {
-    margin: 0 auto;
-  }
-  .buttonIcon {
-    margin-right: ${respSize(12)};
-  }
-  //for bigger icon
-  .buttonIcon.big {
-    font-size: ${respSize(20)};
-  }
-  span {
-    font-size: ${fontSize(13)};
-    line-height: ${fontSize(16)};
-    font-weight: 600;
-  }
-  :disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
-`;
-
 export const TableWrapper = styled.div`
   width: 100%;
   padding-left: ${respSize(32)};
@@ -222,19 +102,13 @@ export const TableWrapper = styled.div`
     width: 100%;
     border-collapse: collapse;
     color: ${COLORS.darkBlue};
- /* word-wrap: break-word; */
-    /* display: none; */
     tbody tr {
       cursor: default;
       max-width: 200px;
     }
   }
   tr {
-    /* border-bottom: 1px solid #ebebf2; */
     white-space: nowrap;
-    /* background-color: blue; */
-    /* align-items: center; */
-    /* display: flex; */
   }
   tr:hover {
     background-color: #fafdfd;
@@ -243,7 +117,6 @@ export const TableWrapper = styled.div`
     }
   }
   th {
-    /* font-size: ${fontSize(14)}; */
     font-size: 14px;
     line-height: ${fontSize(16)};
     font-weight: 600;
@@ -371,55 +244,27 @@ export const StatusDot = styled.div`
   overflow: hidden;
   background-clip: padding-box;
   margin-right: 10px;
-  /* margin-left: -23px; */
-  //When Active
+
+  //When completed
   ${({ status }) =>
-    (status === "active" ||
-      status === "successful" ||
-      status === "success" ||
-      status === "accepted" ||
-      status === "completed" ||
-      status === "1" ||
-      status === true) &&
+    (status === "completed" || status === true) &&
     css`
       border: 2px solid rgba(18, 179, 108, 0.5);
       background-color: rgba(18, 179, 108, 1);
     `}
-    //Inactive
+    //cancelled
   ${({ status }) =>
-    (status === "inactive" ||
-      status === "failed" ||
-      status === "error" ||
-      status === "rejected" ||
-      status === "0" ||
-      status === "cancelled" ||
-      status === false) &&
+    (status === "inactive" || status === "cancelled" || status === false) &&
     css`
       border: 2px solid rgba(252, 72, 63, 0.5);
       background-color: rgba(252, 72, 63, 1);
     `}
-    //Expired
+    //booked
   ${({ status }) =>
-    status === "expired" ||
-    (status === "booked" &&
-      css`
-        border: 2px solid rgba(7, 133, 243, 0.5);
-        background-color: rgba(7, 133, 243);
-      `)}
-    //Pending
-  ${({ status }) =>
-    (status === "pending" || status === "awaiting your feedback") &&
+    status === "booked" &&
     css`
-      border: 2px solid rgba(242, 201, 76, 0.5);
-      background-color: rgba(242, 201, 76, 1);
-    `}
-  ${({ status }) =>
-    (status === "attempt" || status === "select" || status === "processing") &&
-    css`
-      border-radius: unset;
-      background-color: #ebebf2;
-      height: 2px;
-      width: 13px;
+      border: 2px solid rgba(7, 133, 243, 0.5);
+      background-color: rgba(7, 133, 243);
     `}
 `;
 
@@ -452,33 +297,6 @@ export const StatusDot2 = styled(StatusDot)`
   // abandoned & cancelled
   ${({ status }) =>
     (status === "4" || status === "7") &&
-    css`
-      border: 2px solid rgba(252, 72, 63, 0.5);
-      background-color: rgba(252, 72, 63, 1);
-    `}
-`;
-
-// specific for payment status module
-export const StatusDot3 = styled(StatusDot)`
-/* successful */
-  ${({ status }) =>
-    status === "2" &&
-    css`
-      border: 2px solid rgba(0, 128, 0, 0.5);
-      background-color: rgba(0, 128, 0, 1);
-    `}
-
-    //notPaid
-    ${({ status }) =>
-      status === "1" &&
-      css`
-        border: 2px solid rgba(242, 201, 76, 0.5);
-        background-color: rgba(242, 201, 76, 1);
-      `}
-
-  /* failed */
-  ${({ status }) =>
-    status === "3" &&
     css`
       border: 2px solid rgba(252, 72, 63, 0.5);
       background-color: rgba(252, 72, 63, 1);
@@ -551,73 +369,5 @@ export const FooterSelectInput = styled.select`
   @media all and (max-width: 768px) {
     padding-right: ${respSize(3)};
     margin-right: ${respSize(2)};
-  }
-`;
-
-export const DrawerWrapper = styled.div`
-  div {
-    width: 100%;
-    height: 63px;
-    border-bottom: 1px solid #ebebf2;
-  }
-`;
-
-export const MobileWrapper = styled.div`
-  padding: ${respSize(32)};
-  color: ${COLORS.darkBlue};
-  div.wrapper {
-    border-bottom: 1px solid #ebebf2;
-    padding-bottom: 1.8rem;
-    margin-top: 2.2rem;
-
-    h2 {
-      font-size: ${({ fontSz_14px }) => (fontSz_14px ? "14px" : `${fontSize(14)}`)};
-      line-height: ${respSize(16)};
-      font-weight: 600;
-      margin-bottom: 1rem;
-
-      @media screen and (max-width: 380px) {
-        line-height: ${respSize(32)};
-      }
-    }
-    div {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      font-size: ${({ fontSz_14px }) => (fontSz_14px ? "14px" : `${fontSize(14)}`)};
-      line-height: ${respSize(24)};
-      font-weight: 400;
-      span {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        .dot {
-          margin: 0;
-          margin-right: 0.8rem;
-        }
-      }
-      .right {
-        color: #bdbdbd;
-      }
-    }
-  }
-`;
-
-// orders page specific
-export const RightContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-
-  button {
-    margin: 1.6rem auto 0 auto;
-  }
-
-  @media ${device.mobile} {
-    flex-direction: row;
-
-    button {
-      margin: unset;
-      margin-left: 2rem;
-    }
   }
 `;
