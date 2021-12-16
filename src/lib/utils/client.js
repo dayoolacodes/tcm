@@ -2,6 +2,7 @@
 import { getToken } from "./auth-utils";
 import axios from "axios";
 import doToast from "components/doToast/doToast";
+import config from "config";
 // import { logout } from "lib/api/authRequests";
 
 axios.interceptors.response.use(
@@ -62,8 +63,7 @@ export async function client(
   if (body) params.data = JSON.stringify(payload);
 
   let response;
-  // const axiosResponse = await axios(`${config.BASE_URL}/${endpoint}`, params, signal);
-  const axiosResponse = await axios(`https://test-api.squadinc.co/${endpoint}`, params, signal);
+  const axiosResponse = await axios(`${config.BASE_URL}/${endpoint}`, params, signal);
   const data = axiosResponse?.data;
 
   if (data?.data) {

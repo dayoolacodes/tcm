@@ -126,7 +126,7 @@ export default function DataTable(props) {
                       if (value?.isImage) {
                         return (
                           <td key={key + value}>
-                            <img src={`${data?.[key]}`} alt="squad img" />
+                            <img src={`${data?.[key]}`} alt="img" />
                           </td>
                         );
                       }
