@@ -72,7 +72,7 @@ export const loginValidation = values => {
   //   errors.userName = "Username is required";
   // }
   if (!email) {
-    errors.userName = "Username is required";
+    errors.email = "Username is required";
   }
   if (!password) {
     errors.password = "Password is required";

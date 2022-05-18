@@ -67,7 +67,7 @@ const Login = () => {
               <form className="login-form" onSubmit={handleSubmit}>
                 <TextInput
                   name="email"
-                  label="Username"
+                  label="Username / Email"
                   type="text"
                   placeholder="Enter your username"
                 />
