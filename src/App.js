@@ -11,10 +11,6 @@ const UnauthenticatedApp = lazy(() => import("app/unauthenticatedApp"));
 
 function App() {
   const { user } = useUserDetails();
-  // load authenticated app in bg while user completes auth form
-  useEffect(() => {
-    loadAuthenticatedApp();
-  }, []);
 
   return (
     <>

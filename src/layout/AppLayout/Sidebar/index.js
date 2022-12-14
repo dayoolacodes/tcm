@@ -5,7 +5,7 @@ import { ReactComponent as ProfilePicIcon } from "assets/profilepicplaceholder.s
 import navList from "routes/navList";
 import { NavLink, useLocation } from "react-router-dom";
 import COLORS from "styles/colors";
-import { logout } from "lib/authRequests";
+import { logout } from "lib/api/authRequests";
 
 function Index({ profileName = "John Doe" }) {
   const { pathname } = useLocation();

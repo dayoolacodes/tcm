@@ -10,6 +10,8 @@ import { ReactComponent as Arrow } from "assets/arrow-right.svg";
 import { ReactComponent as Logo } from "assets/logo.svg";
 import { signUpValidation } from "utils/utils";
 import Ellipse6 from "assets/Ellipse6.png";
+import { useRegister } from "lib/queries/auth";
+import doToast from "components/doToast/doToast";
 
 const defaultValues = {
   email: "",
@@ -19,11 +21,23 @@ const defaultValues = {
 };
 
 const SignUp = () => {
-  const handleSubmit = (values, setSubmitting) => {
-    setTimeout(() => {
-      console.log(values);
-      setSubmitting(false);
-    }, 1500);
+  const [mutate, { isLoading }] = useRegister();
+  const handleSubmit = payload => {
+    const data = {
+      email: payload?.email?.trim(),
+      password: payload?.password?.trim()
+    };
+    mutate(data, {
+      onSuccess: () => {
+        doToast("Sign-up in successfully", "success");
+      },
+      onError: error => {
+        // network error has been handled already in client fn
+        if (error !== "Network Error") {
+          doToast(error?.response?.data?.message, "error");
+        }
+      }
+    });
   };
 
   return (
@@ -53,12 +67,8 @@ const SignUp = () => {
           <div className="ellipse-wrapper">
             <img src={Ellipse6} alt="ellipse" className="ellipse6" />
           </div>
-          <Formik
-            initialValues={defaultValues}
-            validate={signUpValidation}
-            onSubmit={(values, { setSubmitting }) => handleSubmit(values, setSubmitting)}
-          >
-            {({ isSubmitting, errors, values, handleSubmit }) => (
+          <Formik initialValues={defaultValues} validate={signUpValidation} onSubmit={handleSubmit}>
+            {({ handleSubmit }) => (
               <>
                 <form onSubmit={handleSubmit}>
                   <TextInput
@@ -66,6 +76,7 @@ const SignUp = () => {
                     label="Email"
                     type="email"
                     placeholder="Enter your email address"
+                    autoComplete="email"
                   />
                   <div className="passwords">
                     <TextInput
@@ -73,6 +84,7 @@ const SignUp = () => {
                       label="Password"
                       type="password"
                       placeholder="Create a password"
+                      autoComplete="new-password"
                     />
                     <span className="spacer" />
                     <TextInput
@@ -80,6 +92,7 @@ const SignUp = () => {
                       label="Confirm Password"
                       type="password"
                       placeholder="Confirm password"
+                      autoComplete="new-password"
                     />
                   </div>
                   <span>
@@ -93,8 +106,8 @@ const SignUp = () => {
                       }
                     />
                   </span>
-                  <button type="submit" className="signUp-btn" disabled={isSubmitting}>
-                    {isSubmitting ? (
+                  <button type="submit" className="signUp-btn" disabled={isLoading}>
+                    {isLoading ? (
                       <Spinner />
                     ) : (
                       <span>

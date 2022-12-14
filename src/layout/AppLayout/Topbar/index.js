@@ -7,7 +7,7 @@ import { ReactComponent as MenuIcon } from "assets/menuIcon.svg";
 import MobileMenu from "../MobileMenu";
 import { useLocation } from "react-router-dom";
 import navList from "routes/navList";
-import { logout } from "lib/authRequests";
+import { logout } from "lib/api/authRequests";
 
 function Index() {
   const { pathname } = useLocation();

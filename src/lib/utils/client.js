@@ -1,9 +1,7 @@
-// import config from "config";
 import { getToken } from "./auth-utils";
 import axios from "axios";
 import doToast from "components/doToast/doToast";
 import config from "config";
-// import { logout } from "lib/api/authRequests";
 
 axios.interceptors.response.use(
   function(response) {

@@ -13,7 +13,6 @@ import { loginValidation } from "utils/utils";
 import { Spinner } from "components/loaders";
 import { useLogin } from "lib/queries/auth";
 import doToast from "components/doToast/doToast";
-// import { login } from "lib/authRequests";
 
 const defaultValues = {
   email: "",
