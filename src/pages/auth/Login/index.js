@@ -69,13 +69,13 @@ const Login = () => {
                   label="Username / Email"
                   type="text"
                   placeholder="Enter your username"
-                  requiredtext
+                  requiredtext={1}
                 />
                 <PasswordInput
                   name="password"
                   label="Password"
                   placeholder="Enter your password"
-                  requiredtext
+                  requiredtext={1}
                 />
                 <span className="forgot-password">
                   <Link to="/reset-password">Forgot your password?</Link>

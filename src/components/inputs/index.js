@@ -108,7 +108,7 @@ export const CheckboxInput = props => {
         <Checkbox id={props.name} type={props.type} {...field} {...restProps} />
         <label htmlFor={props.name}>
           {props.label}
-          {props.required ? <span className="required-text">*</span> : null}
+          {props.required || props.requiredtext ? <span className="required-text">*</span> : null}
         </label>
       </CheckboxWrapper>
       {props.displayErrMessage === false ? null : meta.touched && meta.error ? (
@@ -129,7 +129,7 @@ export const PasswordInput = props => {
       </label>
       <div className="input-group">
         <TextInputBox
-          isPassword
+          ispassword={1}
           type={showPassword ? "text" : "password"}
           {...field}
           {...props}

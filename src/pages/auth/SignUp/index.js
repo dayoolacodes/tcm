@@ -77,7 +77,7 @@ const SignUp = () => {
                     type="email"
                     placeholder="Enter your email address"
                     autoComplete="email"
-                    requiredtext
+                    requiredtext={1}
                   />
                   <div className="passwords">
                     <PasswordInput
@@ -85,7 +85,7 @@ const SignUp = () => {
                       label="Password"
                       placeholder="Create a password"
                       autoComplete="new-password"
-                      requiredtext
+                      requiredtext={1}
                     />
                     <span className="spacer" />
                     <PasswordInput
@@ -93,12 +93,13 @@ const SignUp = () => {
                       label="Confirm Password"
                       placeholder="Confirm password"
                       autoComplete="new-password"
-                      requiredtext
+                      requiredtext={1}
                     />
                   </div>
                   <span>
                     <CheckboxInput
                       name="termsAgree"
+                      requiredtext={1}
                       label={
                         <>
                           I agree to the <Link to="/sign-up">Terms</Link> and

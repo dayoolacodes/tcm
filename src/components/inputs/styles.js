@@ -68,14 +68,15 @@ export const TextInputWrapper = styled.div`
       justify-content: center;
       align-items: center;
       position: absolute;
-      right: 10px;
-      top: 5px;
+      right: 3px;
+      top: 6px;
       z-index: 1;
       background: rgba(243, 243, 243, 0.2);
       height: 90%;
       width: 40px;
       overflow: hidden;
       cursor: pointer;
+      border-left: 1px solid #ddd;
       svg {
         width: 400px;
       }
@@ -212,6 +213,9 @@ export const CheckboxWrapper = styled.div`
       margin: 0 5px;
     }
   }
+  .required-text {
+    color: red;
+  }
 `;
 
 export const TextInputBox = styled(Input)`
@@ -226,7 +230,7 @@ export const TextInputBox = styled(Input)`
   text-indent: 1.3rem;
   color: ${colors.darkBlue} !important;
   transition: border-color 0.5s ease;
-  padding-right: ${({ isPassword }) => isPassword && "50px"};
+  padding-right: ${({ ispassword }) => ispassword && "50px"};
   ::-webkit-input-placeholder {
     /* Edge */
     color: ${colors.borderblue};
