@@ -2,7 +2,7 @@ import React from "react";
 import { Container } from "./styles";
 import { ReactComponent as RemoteWorkMan } from "assets/man-and-system.svg";
 import { ReactComponent as LadyDoc } from "assets/lady-doc.svg";
-import { CheckboxInput, TextInput } from "components/inputs";
+import { CheckboxInput, PasswordInput, TextInput } from "components/inputs";
 import { Formik } from "formik";
 import { Link } from "react-router-dom";
 import { Spinner } from "components/loaders";
@@ -34,7 +34,7 @@ const SignUp = () => {
       onError: error => {
         // network error has been handled already in client fn
         if (error !== "Network Error") {
-          doToast(error?.response?.data?.message, "error");
+          doToast(error?.response?.data?.error, "error");
         }
       }
     });
@@ -77,22 +77,23 @@ const SignUp = () => {
                     type="email"
                     placeholder="Enter your email address"
                     autoComplete="email"
+                    requiredtext
                   />
                   <div className="passwords">
-                    <TextInput
+                    <PasswordInput
                       name="password"
                       label="Password"
-                      type="password"
                       placeholder="Create a password"
                       autoComplete="new-password"
+                      requiredtext
                     />
                     <span className="spacer" />
-                    <TextInput
+                    <PasswordInput
                       name="confirmPassword"
                       label="Confirm Password"
-                      type="password"
                       placeholder="Confirm password"
                       autoComplete="new-password"
+                      requiredtext
                     />
                   </div>
                   <span>
@@ -100,8 +101,8 @@ const SignUp = () => {
                       name="termsAgree"
                       label={
                         <>
-                          I agree to the <Link to="/terms">Terms</Link> and
-                          <Link to="/privacy-policy">Privacy Policy</Link>
+                          I agree to the <Link to="/sign-up">Terms</Link> and
+                          <Link to="/sign-up">Privacy Policy</Link>
                         </>
                       }
                     />

@@ -9,6 +9,8 @@ const COLORS = {
   green: "#62C370",
   lightYellow: "#FFF9EB",
   yellow: "#FFC129",
-  primaryBlue: "#0785F3"
+  primaryBlue: "#0785F3",
+  lightRed: "#ffcccb",
+  red: "#FF0000"
 };
 export default COLORS;

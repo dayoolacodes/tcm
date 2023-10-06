@@ -5,7 +5,7 @@ import { ReactComponent as Arrow } from "assets/arrow-right.svg";
 import { ReactComponent as Consulting } from "assets/consultant.svg";
 import { ReactComponent as RemoteWorkMan } from "assets/man-and-system.svg";
 import { Link } from "react-router-dom";
-import { TextInput } from "components/inputs";
+import { PasswordInput, TextInput } from "components/inputs";
 import Ellipse5 from "assets/Ellipse5.png";
 import Ellipse6 from "assets/Ellipse6.png";
 import { Formik } from "formik";
@@ -35,7 +35,7 @@ const Login = () => {
       onError: error => {
         // network error has been handled already in client fn
         if (error !== "Network Error") {
-          doToast(error?.response?.data?.message, "error");
+          doToast(error?.response?.data?.error, "error");
         }
       }
     });
@@ -69,12 +69,13 @@ const Login = () => {
                   label="Username / Email"
                   type="text"
                   placeholder="Enter your username"
+                  requiredtext
                 />
-                <TextInput
+                <PasswordInput
                   name="password"
                   label="Password"
-                  type="password"
                   placeholder="Enter your password"
+                  requiredtext
                 />
                 <span className="forgot-password">
                   <Link to="/reset-password">Forgot your password?</Link>
