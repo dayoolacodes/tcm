@@ -12,9 +12,9 @@ const doToast = (message, type, subtext) => {
     bLeft = `4px solid ${colors.green}`;
     iconBg = colors.green;
   } else if (type === "error") {
-    bgColor = colors.lightYellow;
-    bLeft = `4px solid ${colors.yellow}`;
-    iconBg = colors.yellow;
+    bgColor = colors.lightRed;
+    bLeft = `4px solid ${colors.red}`;
+    iconBg = colors.red;
   } else if (type === "warn") {
     bgColor = "#F9F7E7";
   }
