@@ -56,7 +56,31 @@ export const TextInputWrapper = styled.div`
   width: 100%;
   position: relative;
   margin-top: 16px;
-  position: relative;
+
+  .input-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    span {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      right: 10px;
+      top: 5px;
+      z-index: 1;
+      background: rgba(243, 243, 243, 0.2);
+      height: 90%;
+      width: 40px;
+      overflow: hidden;
+      cursor: pointer;
+      svg {
+        width: 400px;
+      }
+    }
+  }
   .spinner {
     position: absolute;
     top: 32%;
@@ -149,6 +173,13 @@ export const CheckboxWrapper = styled.div`
 
   span {
     margin-right: 5px;
+    width: 20px;
+    height: 20px;
+    outline: 0;
+  }
+  span[data-focus],
+  span[data-checked] {
+    box-shadow: none;
   }
 
   a {
@@ -158,12 +189,13 @@ export const CheckboxWrapper = styled.div`
 
   .css-1r69mki,
   .css-xxkadm {
-    background: #dfebfb;
+    background: ${COLORS.primaryBlue};
     width: 20px;
     height: 20px;
     padding: 3px;
     border-radius: 2px;
     border: none;
+    box-shadow: none;
   }
   .css-xxkadm[aria-checked="true"],
   .css-xxkadm[data-checked] {
@@ -173,6 +205,12 @@ export const CheckboxWrapper = styled.div`
   .css-xxkadm:focus,
   .css-xxkadm[data-focus] {
     box-shadow: none;
+  }
+  label {
+    cursor: pointer;
+    :last-child {
+      margin: 0 5px;
+    }
   }
 `;
 
@@ -188,7 +226,7 @@ export const TextInputBox = styled(Input)`
   text-indent: 1.3rem;
   color: ${colors.darkBlue} !important;
   transition: border-color 0.5s ease;
-
+  padding-right: ${({ isPassword }) => isPassword && "50px"};
   ::-webkit-input-placeholder {
     /* Edge */
     color: ${colors.borderblue};

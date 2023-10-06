@@ -1,6 +1,5 @@
 import React from "react";
 import { useField } from "formik";
-// import { Input, InputGroup, InputLeftAddon } from "@chakra-ui/react";
 import {
   SearchInputWrapper,
   SearchInputBox,
@@ -20,6 +19,7 @@ import { ReactComponent as DropDIconDark } from "assets/select-dropdown-icon-dar
 import { Checkbox } from "@chakra-ui/react";
 import { components } from "react-select";
 import COLORS from "styles/colors";
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 
 export const SearchBar = props => {
   return (
@@ -45,7 +45,7 @@ export const TextInput = props => {
     <TextInputWrapper>
       <label htmlFor={props.name}>
         {props.label}
-        {props.required ? <span className="required-text">*</span> : null}
+        {props.required || props.requiredtext ? <span className="required-text">*</span> : null}
       </label>
 
       <TextInputBox type={props.type} {...field} {...props} autoComplete="off" />
@@ -64,7 +64,7 @@ export const InputWithIcon = props => {
     <TextInputWrapper>
       <label htmlFor={props.name}>
         {props.label}
-        {props.required ? <span className="required-text">*</span> : null}
+        {props.required || props.requiredtext ? <span className="required-text">*</span> : null}
       </label>
       <div className="icon-wrap">
         <div className="icon">{props.icon}</div>
@@ -85,7 +85,7 @@ export const DateInput = props => {
     <TextInputWrapper style={{ ...props.style }}>
       <label htmlFor={props.name} style={{ color: "#F7981D", fontSize: "1.4rem" }}>
         {props.label}
-        {props.required ? <span className="required-text">*</span> : null}
+        {props.required || props.requiredtext ? <span className="required-text">*</span> : null}
       </label>
       <div className="icon-wrap" style={{ marginTop: "15px" }}>
         <div className="icon">{props.icon}</div>
@@ -101,10 +101,11 @@ export const DateInput = props => {
 };
 export const CheckboxInput = props => {
   const [field, meta] = useField(props);
+  const { label, ...restProps } = props;
   return (
     <>
       <CheckboxWrapper>
-        <Checkbox type={props.type} {...field} {...props} />
+        <Checkbox id={props.name} type={props.type} {...field} {...restProps} />
         <label htmlFor={props.name}>
           {props.label}
           {props.required ? <span className="required-text">*</span> : null}
@@ -118,11 +119,27 @@ export const CheckboxInput = props => {
 };
 export const PasswordInput = props => {
   const [field, meta] = useField(props);
+  const [showPassword, setShowPassword] = React.useState(false);
 
   return (
     <TextInputWrapper>
-      <label htmlFor={props.name}>{props.label}</label>
-      <TextInputBox type="password" {...field} {...props} autoComplete="off" />
+      <label htmlFor={props.name}>
+        {props.label}
+        {props.required || props.requiredtext ? <span className="required-text">*</span> : null}
+      </label>
+      <div className="input-group">
+        <TextInputBox
+          isPassword
+          type={showPassword ? "text" : "password"}
+          {...field}
+          {...props}
+          autoComplete="off"
+        />
+        <span onClick={() => setShowPassword(!showPassword)}>
+          {showPassword ? <AiOutlineEye /> : <AiOutlineEyeInvisible />}
+        </span>
+      </div>
+
       {props.displayErrMessage === false ? null : meta.touched && meta.error ? (
         <ErrorSpan>{meta.error}</ErrorSpan>
       ) : null}
@@ -131,8 +148,6 @@ export const PasswordInput = props => {
 };
 
 export const TextAreaInput = props => {
-  // const [field, meta] = useField(props);
-
   return (
     <TextAreaWrapper style={{ marginTop: "0" }}>
       <TextAreaBox type="text" {...props} autoComplete="off" style={{ marginTop: "0" }} />
@@ -184,10 +199,6 @@ export const SelectInput3 = props => {
   const Placeholder = props => {
     return <components.Placeholder {...props} />;
   };
-
-  // const CaretDownIcon = () => {
-  //   return <DropDIcon />;
-  // };
 
   const DropdownIndicator = props => {
     return (
@@ -289,7 +300,6 @@ export const SelectInputNoFomik = props => {
       <label htmlFor={props.field}>{props.label}</label>
       <SelectInputBox
         {...props}
-        // defaultValue={props.defaultValue}
         placeholder={props.placeholder}
         components={{ Placeholder, DropdownIndicator, IndicatorSeparator: () => null }}
         id={props.id}
@@ -297,10 +307,8 @@ export const SelectInputNoFomik = props => {
         styles={style}
         isSearchable={false}
         onChange={props.onChange}
-        // onChange={option => props?.setFieldValue(props?.name, option?.value)}
         menuPortalTarget={document.body}
       />
-      {/* {meta.touched && meta.error ? <ErrorSpan>{meta.error}</ErrorSpan> : null} */}
     </SelectInputWrapper>
   );
 };
