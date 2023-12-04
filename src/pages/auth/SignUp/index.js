@@ -12,6 +12,7 @@ import { signUpValidation } from "utils/utils";
 import Ellipse6 from "assets/Ellipse6.png";
 import { useRegister } from "lib/queries/auth";
 import doToast from "components/doToast/doToast";
+import Copyright from "../Copyright";
 
 const defaultValues = {
   email: "",
@@ -126,7 +127,7 @@ const SignUp = () => {
           </Formik>
         </div>
         <div className="footer">
-          <p className="copyright">Copyright © 2021 TCM Hotline all rights reserved</p>
+          <Copyright />
         </div>
       </div>
     </Container>

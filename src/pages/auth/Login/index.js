@@ -13,6 +13,7 @@ import { loginValidation } from "utils/utils";
 import { Spinner } from "components/loaders";
 import { useLogin } from "lib/queries/auth";
 import doToast from "components/doToast/doToast";
+import Copyright from "../Copyright";
 
 const defaultValues = {
   email: "",
@@ -101,7 +102,7 @@ const Login = () => {
         <div>
           <img src={Ellipse5} alt="ellipse" className="ellipse5" />
           <RemoteWorkMan />
-          <p className="copyright">Copyright © 2021 TCM Hotline all rights reserved</p>
+          <Copyright />
           <Consulting />
         </div>
       </div>
