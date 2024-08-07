@@ -62,6 +62,12 @@ export const Container = styled.div`
       max-width: 472px;
       padding: 0 10px;
 
+      .notif {
+        color: ${COLORS.primaryOrange};
+        font-size: 1.2rem;
+        margin-bottom: 1.6rem;
+      }
+
       .forgot-password {
         font-size: 12px;
         line-height: 18px;

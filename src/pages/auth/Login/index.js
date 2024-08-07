@@ -14,6 +14,7 @@ import { Spinner } from "components/loaders";
 import { useLogin } from "lib/queries/auth";
 import doToast from "components/doToast/doToast";
 import Copyright from "../Copyright";
+import config from "config";
 
 const defaultValues = {
   email: "",
@@ -26,7 +27,7 @@ const Login = () => {
 
   function handleSubmit(payload) {
     const data = {
-      email: payload?.email?.trim(),
+      email: payload?.email === "user" ? config.DUMMY_USER : payload?.email?.trim(),
       password: payload?.password?.trim()
     };
     mutate(data, {
@@ -80,6 +81,10 @@ const Login = () => {
                 />
                 <span className="forgot-password">
                   <Link to="/reset-password">Forgot your password?</Link>
+                </span>
+                <span className="notif">
+                  username: user <br />
+                  password: password{" "}
                 </span>
                 <button type="submit" className="login-btn" disabled={isLoading}>
                   {isLoading ? (
